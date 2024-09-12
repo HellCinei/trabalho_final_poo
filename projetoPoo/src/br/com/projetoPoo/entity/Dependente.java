@@ -1,5 +1,5 @@
 package br.com.projetoPoo.entity;
 
-public class Dependente {
-
+public class Dependente extends Pessoa {
+	private Parentesco parentesco;
 }

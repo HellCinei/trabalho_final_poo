@@ -64,7 +64,7 @@ public class Funcionario extends Pessoa implements Calculos {
 		Double deducaoParcela;
 
 		if (salarioBruto <= 2259.0) {
-			aliquota = 1.;
+			aliquota = 0.;
 			deducaoParcela = 0.;
 		} else if (salarioBruto > 2259.0 && salarioBruto <= 2826.65) {
 			aliquota = 0.075;
@@ -81,4 +81,7 @@ public class Funcionario extends Pessoa implements Calculos {
 		}
 		descontoIR = ((salarioBruto - (dependentes * 189.59) - descontoInss) * aliquota) - deducaoParcela;
 	}
+	public Double calcularSalarioLiq()  {
+        return (salarioBruto - descontoInss - descontoIR);
+    }
 }

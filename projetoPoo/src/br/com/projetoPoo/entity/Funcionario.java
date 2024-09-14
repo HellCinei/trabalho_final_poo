@@ -14,8 +14,8 @@ public class Funcionario extends Pessoa implements Calculos {
 
 	@Override
 	public String toString() {
-		return "Funcionario salarioBruto: " + salarioBruto + "\nnome: " + nome + "\ncpf: " + cpf + "\ndataNascimento: "
-				+ dataNascimento + "\nDependente(s): " + dependentes;
+		return nome + ";" + cpf + ";" + String.format("%.2f", descontoInss) + ";" + String.format("%.2f", descontoIR)
+				+ ";" + String.format("%.2f", calcularSalarioLiq()) + "\n";
 	}
 
 	public Funcionario(String nome, String cpf, LocalDate dataNascimento, Double salarioBruto) {

@@ -1,16 +1,26 @@
 package br.com.projetoPoo.entity;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.projetoPoo.interfaces.Calculos;
 
 public class Funcionario extends Pessoa implements Calculos {
 	private Double salarioBruto;
 	private Double descontoInss;
 	private Double descontoIR;
-	private Integer dependentes;
+	private List<Dependente> dependentes = new ArrayList<Dependente>();
 
-	public Funcionario(Double salarioBruto, Integer dependentes) {
+	@Override
+	public String toString() {
+		return "Funcionario salarioBruto: " + salarioBruto + "\nnome: " + nome + "\ncpf: " + cpf + "\ndataNascimento: "
+				+ dataNascimento + "\nDependente(s): " + dependentes;
+	}
+
+	public Funcionario(String nome, String cpf, LocalDate dataNascimento, Double salarioBruto) {
+		super(nome, cpf, dataNascimento);
 		this.salarioBruto = salarioBruto;
-		this.dependentes = dependentes;
 	}
 
 	public Double getSalarioBruto() {
@@ -37,12 +47,16 @@ public class Funcionario extends Pessoa implements Calculos {
 		this.descontoIR = descontoIR;
 	}
 
-	public Integer getDependentes() {
+	public List<Dependente> getDependentes() {
 		return dependentes;
 	}
 
-	public void setDependentes(Integer dependentes) {
+	public void setDependentes(List<Dependente> dependentes) {
 		this.dependentes = dependentes;
+	}
+
+	public void adicionarDependente(Dependente dependente) {
+		dependentes.add(dependente);
 	}
 
 	public void calcularInss() {
@@ -79,9 +93,11 @@ public class Funcionario extends Pessoa implements Calculos {
 			aliquota = 0.275;
 			deducaoParcela = 896.00;
 		}
-		descontoIR = ((salarioBruto - (dependentes * 189.59) - descontoInss) * aliquota) - deducaoParcela;
+		descontoIR = ((salarioBruto - (dependentes.size() * 189.59) - descontoInss) * aliquota) - deducaoParcela;
 	}
-	public Double calcularSalarioLiq()  {
-        return (salarioBruto - descontoInss - descontoIR);
-    }
+
+	public Double calcularSalarioLiq() {
+		return (salarioBruto - descontoInss - descontoIR);
+	}
+
 }

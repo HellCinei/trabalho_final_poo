@@ -8,17 +8,25 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Arquivo a = new Arquivo();
+		try {
+			Arquivo a = new Arquivo();
 
-		a.lerArquivo();
+			a.lerArquivo();
 
-		for (Funcionario f : a.getFuncionarios()) {
+			for (Funcionario f : a.getFuncionarios()) {
 
-			f.calcularInss();
-			f.calcularIR();
+				f.calcularInss();
+				f.calcularIR();
 
+			}
+			a.DigitarArquivo();
+		} catch (NullPointerException e) {
+			System.err.println("Valor nulo!");
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println("Erro!!!!");
+			e.printStackTrace();
 		}
-		a.DigitarArquivo();
 
 	}
 

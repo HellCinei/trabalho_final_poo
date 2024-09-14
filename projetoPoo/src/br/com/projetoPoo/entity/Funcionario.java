@@ -59,7 +59,7 @@ public class Funcionario extends Pessoa implements Calculos {
 		dependentes.add(dependente);
 	}
 
-	public void calcularInss() {
+	public void calcularInss() throws NullPointerException{
 		if (salarioBruto <= 1412.00) {
 			descontoInss = salarioBruto * 0.075;
 		} else if (salarioBruto <= 2666.68) {
@@ -73,7 +73,7 @@ public class Funcionario extends Pessoa implements Calculos {
 		}
 	}
 
-	public void calcularIR() {
+	public void calcularIR() throws NullPointerException{
 		Double aliquota;
 		Double deducaoParcela;
 
@@ -94,9 +94,10 @@ public class Funcionario extends Pessoa implements Calculos {
 			deducaoParcela = 896.00;
 		}
 		descontoIR = ((salarioBruto - (dependentes.size() * 189.59) - descontoInss) * aliquota) - deducaoParcela;
+
 	}
 
-	public Double calcularSalarioLiq() {
+	public Double calcularSalarioLiq() throws NullPointerException{
 		return (salarioBruto - descontoInss - descontoIR);
 	}
 

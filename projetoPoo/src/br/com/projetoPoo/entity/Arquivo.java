@@ -81,13 +81,13 @@ public class Arquivo {
 		}
 	}
 
-	public void DigitarArquivo() {
+	public void escreverArquivo() {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(
-					"C:\\Users\\Win\\Documents\\trabalho_final_poo\\projetoPoo\\src\\br\\com\\projetoPoo\\testemain\\planilhas\\saidafuncionario.csv"));
+					"./src/br/com/projetoPoo/testemain/planilhas/saidafuncionario.csv"));
 
-			for (Funcionario f : funcionarios) {
-				bw.write(f.toString());
+			for (Funcionario funcionario : funcionarios) {
+				bw.write(funcionario.toString());
 			}
 			bw.close();
 		} catch (IOException e) {

@@ -19,7 +19,7 @@ public class Main {
 				f.calcularIR();
 
 			}
-			a.DigitarArquivo();
+			a.escreverArquivo();
 		} catch (NullPointerException e) {
 			System.err.println("Valor nulo!");
 			e.printStackTrace();

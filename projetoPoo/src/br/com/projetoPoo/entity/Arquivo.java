@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import br.com.projetoPoo.enums.Parentesco;
 
 public class Arquivo {
@@ -20,14 +22,14 @@ public class Arquivo {
 		return funcionarios;
 	}
 
-	public void lerArquivo() {
+	public void lerArquivo(String caminho) {
+		String nomeArquivo = caminho;
 		try {
-			Scanner ler = new Scanner(System.in);
-			System.out.println("Digite o nome do arquivo: ");
-			String nomeArquivo = ler.next();
-			ler.close();
+			//Scanner ler = new Scanner(System.in);
+			//System.out.println("Digite o nome do arquivo: ");
+			//ler.close();
 			Scanner sc = new Scanner(new File(nomeArquivo));
-
+			
 			while (sc.hasNext()) {
 				String linha = sc.nextLine();
 
@@ -47,6 +49,7 @@ public class Arquivo {
 								Double.parseDouble(dado3)));
 						v.validCpf(dado1);
 
+						
 					} catch (NumberFormatException e) {
 
 						v.validCpf(dado1);
@@ -64,7 +67,6 @@ public class Arquivo {
 				}
 
 			}
-
 			sc.close();
 			/*
 			 * for (Funcionario funcionario : funcionarios) {
@@ -72,23 +74,23 @@ public class Arquivo {
 			 */
 
 		} catch (IOException e) {
-			System.err.println("Arquivo não encontrado!");
+			JOptionPane.showMessageDialog(null, "Arquivo não encontrado!");
 		} catch (DependenteException e) {
 			System.err.println(e.getMessage());
 		} catch (Exception e) {
-			System.err.println(e.getMessage() + "Erro!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			JOptionPane.showMessageDialog(null, "Erro!");
 			e.printStackTrace();
 		}
 	}
 
-	public void DigitarArquivo() {
+	public void DigitarArquivo(String caminho) {
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(
-					"C:\\Users\\Win\\Documents\\trabalho_final_poo\\projetoPoo\\src\\br\\com\\projetoPoo\\testemain\\planilhas\\saidafuncionario.csv"));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(caminho));
 
 			for (Funcionario f : funcionarios) {
 				bw.write(f.toString());
 			}
+			
 			bw.close();
 		} catch (IOException e) {
 			System.err.println("O Arquivo não foi encontrado!");
